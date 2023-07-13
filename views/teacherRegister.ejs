@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Teacher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
+    <style>
+        
+      body{
+        background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Raleway, sans-serif;
+        font-weight: 400;
+        color: #ffffff;
+        margin: 0;
+        padding: 0; /* Center text horizontally */
+        display: flex;
+        align-items: center;
+        justify-content: center;}
+      h1{
+          
+      font-family: Raleway, sans-serif;
+      font-size: 70px;
+      font-weight: 500;
+      width: 50vw;
+      height: 20vh;
+      padding: 10px;
+        background-color: rgb(218, 247, 166);
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        justify-content: center; /* Center text vertically */
+        align-items: center;
+        border-radius: 10px;
+      }
+      
+      h2{
+          font-size: small;
+      }
+      
+      p{
+          font-size: smaller;
+          font-weight: 200;
+      }
+      
+      li{
+      
+          font-size: medium;
+          width: 50vw;
+        height: 30vh;
+        padding: 10px;
+        background-color: rgb(218, 247, 166);
+        border-radius: 10px;
+      }
+      
+      ul{
+          font-size: small;
+      
+      }
+      
+      button{
+          font-family: Raleway, sans-serif;
+          font-size: 25px;
+          font-weight: 400;
+          padding: 5px;
+          background-color: rgb(255, 195, 0);
+          width: 25vw;
+        height: 7vh;
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        justify-content: center;
+        border-radius: 10px;
+      
+      }
+      
+      div{
+          font-size: 25px;
+          width: 40vw;
+        height: 10vh;
+        padding: 10px;
+        background-color: rgba(144, 12, 63);
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        border-radius: 10px;
+        gap: 10px;
+        
+      }
+      
+      a {
+          font-family: Raleway, sans-serif;
+          font-size: 25px;
+          text-decoration: none;
+          font-weight: 400;
+          text-align: center;
+        }
+      
+        form{
+          font-size: 25px;
+          border-radius: 10px;
+          width: 50vw;
+        height: 30vh;
+        padding: 10px;
+        background-color: rgb(88, 24, 69);
+        display:flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        /* Add flexbox */ /* Center text vertically */
+        }
+        label {
+        margin-bottom: 5px;
+      }
+      
+        .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      .register-link {
+        margin-top: 10px;
+      }
+      .register-link a {
+        display: inline-block;
+        font-size: smaller;
+        text-decoration: none;
+      }
+        .container {
+        display: flex;
+        flex-direction: column;
+        column-gap: 10px;
+        gap: 5px;
+        align-items: center;
+        width: 70vw;
+        height: 40vw;
+        background-color: rgb(178, 106, 35);
+        border-radius: 10px;
+      }
+      input2{
+          width: 10vw;
+        height: 5vh;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      input{
+          width: 10vw;
+        height: 5vh;
+        padding: 2px;
+        border-radius: 5px;
+      }
+          </style>
+  <style>
+    .add-subject-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #007bff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .remove-subject-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #dc3545;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .popup-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 300px;
+    }
+    .popup-content input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .popup-content button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // Function to add more subject fields
+    function addSubject() {
+      
+      const subjectsContainer = document.getElementById('subjectsContainer');
+      const subjectIndex = subjectsContainer.children.length + 1;
+      const subjectDiv = document.createElement('div');
+      subjectDiv.innerHTML = `
+      <label for="subject${subjectIndex}">Subject ${subjectIndex}:</label>
+        <input type="text" id="subject${subjectIndex}" name="subjects[${subjectIndex - 1}][name]" required>
+        <label for="years${subjectIndex}">Years (separated by commas):</label>
+        <input type="text" id="years${subjectIndex}" name="subjects[${subjectIndex - 1}][years]" required><br><br>
+        <button type="button" class="remove-subject-btn" onclick="removeSubject(this)"><i class="fas fa-times"></i></button><br><br>
+      `;
+      
+      subjectsContainer.appendChild(subjectDiv);
+    }
+
+    function removeSubject(button) {
+      const subjectDiv = button.parentNode;
+      subjectDiv.remove();
+    }
+
+    function showPasswordPopup() {
+      const overlay = document.getElementById('popupOverlay');
+      overlay.style.display = 'flex';
+    }
+
+    // Function to hide the password popup
+    function hidePasswordPopup() {
+      const overlay = document.getElementById('popupOverlay');
+      overlay.style.display = 'none';
+    }
+
+    // Function to validate the password
+    function validatePassword() {
+      const passwordInput = document.getElementById('lockpassword');
+      const lockpassword = passwordInput.value;
+      if (lockpassword === '76376835') {
+        hidePasswordPopup();
+      } else {
+        alert('Wrong password! Please try again.');
+      }
+    }
+
+    window.onload = function(){
+        showPasswordPopup();
+    };
+  </script>
+</head>
+<body>
+  <h1>Create Teacher</h1>
+  <div id="popupOverlay" class="popup-overlay">
+    <div class="popup-content">
+      <h2>Enter Password</h2>
+      <input type="password" id="lockpassword" placeholder="Enter Teacher Lock">
+      <button onclick="validatePassword()">Submit</button>
+    </div>
+  </div>
+  <form action="/registerteacher" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <div id="subjectsContainer">
+        <% if (Array.isArray(subjects) && subjects.length > 0) { %>
+          <% for (let i = 0; i < subjects.length; i++) { %>
+            <label for="subject<%= i + 1 %>">Subject <%= i + 1 %>:</label>
+            <input type="text" id="subject<%= i + 1 %>" name="subjects[<%= i %>][name]" required>
+            <label for="years<%= i + 1 %>">Years (separated by commas):</label>
+            <input type="text" id="years<%= i + 1 %>" name="subjects[<%= i %>][years]" required><br><br>
+            <button type="button" class="remove-subject-btn" onclick="removeSubject(this)"><i class="fas fa-minus"></i></button>
+          <% } %>
+        <% } %>
+      </div>
+
+    <button type="button" class="add-subject-btn" onclick="addSubject()"><i class="fas fa-plus"></i></button><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <input type="submit" value="Create Teacher">
+  </form>
+</body>
+</html>

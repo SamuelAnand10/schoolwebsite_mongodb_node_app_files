@@ -1,0 +1,163 @@
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
+    <style>
+        
+        body{
+          background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          font-family: Raleway, sans-serif;
+          font-weight: 400;
+          color: #ffffff;
+          margin: 0;
+          padding: 0; /* Center text horizontally */
+          display: flex;
+          align-items: center;
+          justify-content: center;}
+        h1{
+            
+        font-family: Raleway, sans-serif;
+        font-size: 70px;
+        font-weight: 500;
+        width: 50vw;
+        height: 20vh;
+        padding: 10px;
+          background-color: rgb(218, 247, 166);
+          text-align: center; /* Center text horizontally */
+          display: flex; /* Add flexbox */
+          justify-content: center; /* Center text vertically */
+          align-items: center;
+          border-radius: 10px;
+        }
+        
+        h2{
+            font-size: small;
+        }
+        
+        p{
+            font-size: smaller;
+            font-weight: 200;
+        }
+        
+        li{
+        
+            font-size: medium;
+            width: 50vw;
+          height: 30vh;
+          padding: 10px;
+          background-color: rgb(218, 247, 166);
+          border-radius: 10px;
+        }
+        
+        ul{
+            font-size: small;
+        
+        }
+        
+        button{
+            font-family: Raleway, sans-serif;
+            font-size: 25px;
+            font-weight: 400;
+            padding: 5px;
+            background-color: rgb(255, 195, 0);
+            width: 25vw;
+          height: 7vh;
+          text-align: center; /* Center text horizontally */
+          display: flex; /* Add flexbox */
+          justify-content: center;
+          border-radius: 10px;
+        
+        }
+        
+        div{
+            font-size: 25px;
+            width: 40vw;
+          height: 10vh;
+          padding: 10px;
+          background-color: rgba(144, 12, 63);
+          text-align: center; /* Center text horizontally */
+          display: flex; /* Add flexbox */
+          border-radius: 10px;
+          gap: 10px;
+          
+        }
+        
+        a {
+            font-family: Raleway, sans-serif;
+            font-size: 25px;
+            text-decoration: none;
+            font-weight: 400;
+            text-align: center;
+          }
+        
+          form{
+            font-size: 25px;
+            border-radius: 10px;
+            width: 50vw;
+          height: 30vh;
+          padding: 10px;
+          background-color: rgb(88, 24, 69);
+          display:flex;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 10px;
+          /* Add flexbox */ /* Center text vertically */
+          }
+          label {
+          margin-bottom: 5px;
+        }
+        
+          .button-container {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+        }
+        .register-link {
+          margin-top: 10px;
+        }
+        .register-link a {
+          display: inline-block;
+          font-size: smaller;
+          text-decoration: none;
+        }
+          .container {
+          display: flex;
+          flex-direction: column;
+          column-gap: 10px;
+          gap: 5px;
+          align-items: center;
+          width: 70vw;
+          height: 40vw;
+          background-color: rgb(178, 106, 35);
+          border-radius: 10px;
+        }
+        input2{
+            width: 10vw;
+          height: 5vh;
+          padding: 2px;
+          border-radius: 5px;
+        }
+        input{
+            width: 10vw;
+          height: 5vh;
+          padding: 2px;
+          border-radius: 5px;
+        }
+            </style>
+</head>
+<body>
+<h1 style="color: chartreuse;">Teachers Domain</h1>
+<h1> Hello there <%= name %>  </h1> 
+<a href="/teacherProfile">View Profile</a>
+<a href="/myStudents"> My students</a>
+<a href="/createAssignment">Assignments</a>
+<form action="/logout?_method=DELETE"  method="post">
+ <button type="submit">Log out</button>
+</form>
+</body>
