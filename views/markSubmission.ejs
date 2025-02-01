@@ -1,17 +1,59 @@
-<title>Mark Submission</title>
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Mark Submission</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-        
+   .profile-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    
+       /* Add your desired icon styles */
+}
+
+/* Styles for the sidebar */
+.sidebar {
+    position: fixed;
+    top: 90;
+    bottom: 50;
+    right: -300px; /* Off-canvas initially */
+    width: 200px;
+    height: 60vh;
+    background-color: rgb(0, 0, 0.0.5);
+    transition: right 0.3s ease-in-out; /* Smooth transition animation */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 10px;
+    margin-top: -20vh;
+   
+
+   
+  
+    
+    /* Add your desired sidebar styles */
+}
+
+.sidebar.active {
+    right: 0; /* Show the sidebar when active */
+}
     body{
-      background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
+      background-image: url("https://4kwallpapers.com/images/wallpapers/texture-dark-background-purple-2732x2732-3086.jpg");
       background-size: cover;
-      background-repeat: no-repeat;
+      background-repeat: repeat-y;
       font-family: Raleway, sans-serif;
       font-weight: 400;
       color: #ffffff;
@@ -19,25 +61,64 @@
       padding: 0; /* Center text horizontally */
       display: flex;
       align-items: center;
-      justify-content: center;}
+      justify-content: center;
+      margin-right: 12vw;
+      margin-top: 7vh;
+    }
     h1{
         
     font-family: Raleway, sans-serif;
-    font-size: 70px;
-    font-weight: 500;
-    width: 50vw;
-    height: 20vh;
+    font-size: 40pt;
+    font-weight: 400;
+    width: 60vw;
+    height: 10vh;
     padding: 10px;
-      background-color: rgb(218, 247, 166);
+    padding-bottom: 0px;
+    background-color: rgb(110, 10, 48);
       text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       justify-content: center; /* Center text vertically */
       align-items: center;
       border-radius: 10px;
+      margin-bottom: 10vh;
+      margin-top: -25vh;
+      margin-left: -5vw;
     }
-    
+    .second{
+      width: 55vw;
+      font-size: 25pt;
+      height: 5vh;
+      justify-content: left;
+      background-color: #e8af30;
+      color: black;
+    }
     h2{
-        font-size: small;
+        width: 100vw;
+        height: 7vh;
+        font-size: 30pt;
+        font-weight: 600;
+        background-color: #30003D;
+        color: #ffffff;
+        display: flex;
+        position: fixed;
+        top:-35;
+        justify-content: center;
+        margin-left: 12vw;
+        margin-top: -95vh;
+        margin-bottom: 24vh;
+    }
+
+    h3{
+      width: 10vw;
+        height: 7vh;
+        font-size: 30pt;
+        font-weight: 600;
+        color: #ffffff;
+        display: flex;
+        position: fixed;
+        top:0;
+        margin-left: 90pt;
+        margin-top: 0vh;
     }
     
     p{
@@ -47,12 +128,18 @@
     
     li{
     
-        font-size: medium;
-        width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(218, 247, 166);
+        font-size: 25pt;
+        font-weight: 700;
+        width: 13vw;
+      height: 7vh;
+      background-color:#30003D;
+      color: rgb(255, 255, 255);
       border-radius: 10px;
+      margin-top: 0pt;
+      margin-bottom: 115pt;
+      margin-left: 2px;
+      list-style: none;
+      
     }
     
     ul{
@@ -63,25 +150,27 @@
     button{
         font-family: Raleway, sans-serif;
         font-size: 25px;
-        font-weight: 400;
+        font-weight: 500;
         padding: 5px;
         background-color: rgb(255, 195, 0);
-        width: 25vw;
-      height: 7vh;
+        width: 13vw;
+      height: 5vh;
+      margin-left: 5px;
       text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       justify-content: center;
       border-radius: 10px;
+      
     
     }
-    
     div{
         font-size: 25px;
         width: 40vw;
       height: 10vh;
       padding: 10px;
-      background-color: rgba(144, 12, 63);
-      text-align: center; /* Center text horizontally */
+        font-weight: 400;
+        background-color: rgb(0,0,0,0.5);
+              text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       border-radius: 10px;
       gap: 10px;
@@ -89,28 +178,20 @@
     }
     
     a {
+      width: 15vw;
+      height: 10vh;
         font-family: Raleway, sans-serif;
-        font-size: 25px;
+        font-size: 20pt;
         text-decoration: none;
-        font-weight: 400;
+        font-weight: 300;
         text-align: center;
+        color: #6d048b;
+        margin-right: 20vw;
+       
+        margin-bottom: 1vh;
+        
       }
     
-      form{
-        font-size: 25px;
-        border-radius: 10px;
-        width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(88, 24, 69);
-      display:flex;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 10px;
-      /* Add flexbox */ /* Center text vertically */
-      }
       label {
       margin-bottom: 5px;
     }
@@ -131,15 +212,20 @@
       .container {
       display: flex;
       flex-direction: column;
-      column-gap: 10px;
-      gap: 5px;
+      column-gap: 1px;
+      gap: 1px;
       align-items: center;
       width: 70vw;
-      height: 40vw;
-      background-color: rgb(178, 106, 35);
+      height: 100vh;
+      background-color: rgb(75, 0, 130,0.75);
       border-radius: 10px;
+      margin-top: 40pt;
+      margin-bottom: 10pt;
+      margin-left: 0vw;
+      margin-right: 10vw;
+      
     }
-    input2{
+    .input2{
         width: 10vw;
       height: 5vh;
       padding: 2px;
@@ -151,18 +237,137 @@
       padding: 2px;
       border-radius: 5px;
     }
-        </style>
-  <style>
-    #pdf-viewer {
-      overflow-y: scroll;
-      height: 100vh;
+    table{
+      font-size: 25px;
+        width: 50vw;
+      height: 40vh;
+      padding: 10px;
+        font-weight: 400;
+        background-color: #e8af30;
+      text-align: center; /* Center text horizontally */
+      display: flex; /* Add flexbox */
+      border-radius: 10px;
+      gap: 0px;
+      border-collapse: collapse;
+      justify-content: center; /* Merge borders for adjacent cells */
+      color: black;
+  /* Adjust the width as needed */
+}
+
+    
+    tr{
+      width: 40vw;
+      border: 2px solid black;
+      height: inherit;
+      column-gap: 10pt;
+      
+  padding: 8px; /* Adjust the padding as needed */
+
+
     }
-    canvas {
-      display: block;
-      margin: 16px auto;
+    td{
+      width: 35vw;
+      height: 5px;
+      border: 2px solid black;
+      justify-content: center;
+      padding: 5px;
+      
+    }
+
+    h4{
+      width: 54vw;
+      height: 7vh;
+      border-radius: 10px;
+      background-color: rgb(110, 10, 48);
+      color: white;
+
+    }
+    h5{
+      width: 98vw;
+      height: 30vh;
+      border-radius: 0;
+      background-color: black;
+      color: #ffffff;
+     padding-top: 100pt;
+     padding-bottom: 100pt;
+     padding-left: 10pt;
+      font-size: 15pt;
+      font-weight: 300;
+      margin-left: 2vw;
+      text-align: left;
+      margin-top: 40vh;
+    }
+    h6{
+      width: 30vw;
+      height: 40vh;
+      background-color:rgba(3, 3, 255, 0.5);
+      border-radius: 10pt;
+      text-align: left;
+      padding: 20pt;
+      font-size: 15pt;
+      font-weight: 300;
+    }
+    form{
+      margin-top: 90vh;
+      justify-content: left;
+      width: 50vw;
+      height: 30vh;
+      padding-bottom: 10vh;
+      padding-top: 10vh;
+      background-color: rgb(109, 4, 139,0.7);
+      margin-bottom: 10vh;
+      border-radius: 5pt;
+    }
+    select{
+      border-radius: 5px;
+      width: 17vw;
+      height: 5vh;
+      font-size: 11pt;
+      font-weight: 400;
+      font-family: Raleway;
+    }
+
+    .pdf-viewer-container {
+      width: 40vw;
+      height: 80vh;
+      overflow: auto;
+      background-color: #00000056;
+      border-radius: 10px;
+      padding: 10px;
+      margin-left: -15vw;
+      flex-direction: column;
+    }
+
+    .pdf-page {
+      width: 100%;
+      height: auto;
     }
   </style>
+</head>
+<body>
+  <h2>Teacher Hub</h2>
+  <a href="/teacher" style="text-align: left;"><h3 >TINA</h3></a>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Sidebar content goes here -->
+    <li style="margin-bottom: 10vh;height: 7vh;">Hub Menu</li>
+    <a href="/teacherProfile" style="margin-bottom: 1vh;">View Profile</a>
+  <a href="/myStudents"style="margin-bottom: 1vh;"> My students</a>
+  <a href="/createAssignment"style="margin-bottom: -95vh;">Assignments</a>
+  <form action="/logout?_method=DELETE"  method="post" style="height:0; width: 0;margin-bottom: -5vh;">
+   <button type="submit">Log out</button>
+    </form>
+  </div>
+
+  <div class="profile-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+
   <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
     function loadPDF(url) {
       fetch(url)
         .then(response => response.arrayBuffer())
@@ -197,23 +402,28 @@
 
     loadPDF('/download/<%= subbed.file %>'); 
   </script>
-</head>
-<ul>
-    <li>
-      <a href="/download/<%= subbed.file %>"><%= subbed.file%></a>
-     <div id="pdf-viewer"></div>
+<div class="container">
+  <ul>
+    <li style="background-color: transparent;">
+
+      <div class="pdf-viewer-container" id="pdf-viewer"></div> 
+           <a href="/download/<%= subbed.file %>" style="margin-left: 15vw;margin-bottom: -3vh;background-color:#6d048b;width: 30vw;height: 10vh;border-radius: 2pt;color:#000000; cursor: pointer;">Download</a>
     </li>
-</ul>
+  </ul>
+  <br><br><br><br>
 
-
-    <form action="/marksSubmission/<%= subbed._id %>" method="post">
-        <h1>Submit Grades</h1>
-        <label>Grade:</label>
-        <input type="text" id="grade" name="grade" ><br>
+  <form action="/marksSubmission/<%= subbed._id %>" method="post" style="padding-bottom: 1vh;justify-content: left;text-align: left;padding-left: 1vw;margin-left: 2vw ;">
+    <h1>Submit Grades</h1>
+    <label>Grade:</label>
+    <input type="text" id="grade" name="grade" ><br><br>
         
-        <label>Mark:</label>
-        <input type="number" id="mark" name="mark" ><br>
+    <label>Mark:</label>
+    <input type="number" id="mark" name="mark" style="margin-left: 10pt;"><br><br>
         
-        <input type="submit" value="Submit">
-    </form>
-    <button><a href="/viewSubmissions/<%= subbed._id %>">BACK</a></button>
+    <input type="submit" value="Submit" style="margin-left: 35vw; font-family: Raleway; font-size: 15pt;font-weight: 400;margin-top: -10vh;background-color:#30003D;color: #ffffff;">
+  </form>
+  <button style="margin-bottom: -30vh;margin-top: 30vh;margin-left: 0vw;"><a href="/viewSubmissions/<%= subbed._id %>" style="margin-left: 20vw;">BACK</a></button>
+  <h5>Created By An Indie Developer <br><br> Contact Us: tinawebsite@gmail.com</h5>
+</div>
+</body>
+</html>

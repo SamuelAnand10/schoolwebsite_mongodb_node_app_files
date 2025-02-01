@@ -3,95 +3,158 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-        
+    .profile-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    
+       /* Add your desired icon styles */
+}
+
+/* Styles for the sidebar */
+.sidebar {
+    position: fixed;
+    top: 90;
+    bottom: 50;
+    right: -300px; /* Off-canvas initially */
+    width: 200px;
+    height: 60vh;
+    background-color: #b78d95;
+    transition: right 0.3s ease-in-out; /* Smooth transition animation */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 10px;
+
+   
+  
+    
+    /* Add your desired sidebar styles */
+}
+
+.sidebar.active {
+    right: 0; /* Show the sidebar when active */
+}
     body{
-      background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
+      background-image: url("https://4kwallpapers.com/images/wallpapers/texture-dark-background-purple-2732x2732-3086.jpg");
       background-size: cover;
       background-repeat: repeat-y;
       font-family: Raleway, sans-serif;
       font-weight: 400;
       color: #ffffff;
-      margin: 0;
-      padding: 0; /* Center text horizontally */
+      margin-right: 150pt;
+       /* Center text horizontally */
       display: flex;
       align-items: center;
       justify-content: center;}
     h1{
         
     font-family: Raleway, sans-serif;
-    font-size: 70px;
-    font-weight: 500;
-    width: 50vw;
-    height: 20vh;
+    font-size: 40pt;
+    font-weight: 400;
+    width: 60vw;
+    height: 10vh;
     padding: 10px;
-      background-color: rgb(218, 247, 166);
+    background-color: rgb(110, 10, 48);
       text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       justify-content: center; /* Center text vertically */
       align-items: center;
       border-radius: 10px;
-      gap: 20px;
     }
-    
+    .second{
+      width: 55vw;
+      font-size: 25pt;
+      height: 5vh;
+      justify-content: left;
+      background-color: #e8af30;
+      color: black;
+    }
     h2{
-        font-size: small;
+        width: 100vw;
+        height: 7vh;
+        font-size: 30pt;
+        font-weight: 600;
+        background-color: #30003D;
+        color: #ffffff;
+        display: flex;
+        position: fixed;
+        top:-35;
+        right: -15;
+        justify-content: center;
+       
+    }
+
+    h3{
+      width: 10vw;
+        height: 7vh;
+        font-size: 30pt;
+        font-weight: 600;
+        color: #ffffff;
+        display: flex;
+        position: fixed;
+        top:-35;
+        margin-left: 10pt;
     }
     
     p{
+        font-size: smaller;
         font-weight: 200;
-        font-family: Raleway, sans-serif;
-        font-size: 15px;
-        width: 30vw;
-        height: 5vh;
-        padding: 1px;
-          background-color:darkgoldenrod;
-          border-radius: 10px;
-          align-items: center;
-          justify-content: center;
     }
     
     li{
     
-        font-size: medium;
+        font-size: 25pt;
+        font-weight: 700;
         width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(218, 247, 166);
+      height: 40vh;
+      background-color: #F7E7CE ;
+      color: rgb(0, 0, 0);
       border-radius: 10px;
-      align-items: center;
-      justify-content: center;
+      margin-top: 0pt;
+      margin-bottom: 115pt;
+      margin-left: 2px;
+      list-style: none;
+      
     }
     
     ul{
         font-size: small;
-        align-items: center;
-        justify-content: center;
     
     }
     
     button{
         font-family: Raleway, sans-serif;
         font-size: 25px;
-        font-weight: 400;
+        font-weight: 500;
         padding: 5px;
         background-color: rgb(255, 195, 0);
         width: 25vw;
-      height: 7vh;
+      height: 5vh;
+      margin-left: 5px;
       text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       justify-content: center;
       border-radius: 10px;
+      
     
     }
-    
     div{
         font-size: 25px;
         width: 40vw;
       height: 10vh;
       padding: 10px;
-      background-color: rgba(144, 12, 63);
-      text-align: center; /* Center text horizontally */
+        font-weight: 400;
+        background-color: #b78d95;
+              text-align: center; /* Center text horizontally */
       display: flex; /* Add flexbox */
       border-radius: 10px;
       gap: 10px;
@@ -99,28 +162,15 @@
     }
     
     a {
+      width: 40vw;
+      height: 10vh;
         font-family: Raleway, sans-serif;
         font-size: 25px;
         text-decoration: none;
-        font-weight: 400;
+        font-weight: 500;
         text-align: center;
       }
     
-      form{
-        font-size: 25px;
-        border-radius: 10px;
-        width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(88, 24, 69);
-      display:flex;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 10px;
-      /* Add flexbox */ /* Center text vertically */
-      }
       label {
       margin-bottom: 5px;
     }
@@ -141,15 +191,20 @@
       .container {
       display: flex;
       flex-direction: column;
-      column-gap: 10px;
-      gap: 5px;
+      column-gap: 1px;
+      gap: 1px;
       align-items: center;
       width: 70vw;
-      height: 40vw;
-      background-color: rgb(178, 106, 35);
+      height: 45vw;
+      background-color: rgb(75, 0, 130,0.75);
       border-radius: 10px;
+      margin-top: 40pt;
+      margin-bottom: 40pt;
+      
+      
+      
     }
-    input2{
+    .input2{
         width: 10vw;
       height: 5vh;
       padding: 2px;
@@ -161,10 +216,99 @@
       padding: 2px;
       border-radius: 5px;
     }
+    table{
+      font-size: 25px;
+        width: 50vw;
+      height: 40vh;
+      padding: 10px;
+        font-weight: 400;
+        background-color: #e8af30;
+      text-align: center; /* Center text horizontally */
+      display: flex; /* Add flexbox */
+      border-radius: 10px;
+      gap: 0px;
+      border-collapse: collapse;
+      justify-content: center; /* Merge borders for adjacent cells */
+      color: black;
+  /* Adjust the width as needed */
+}
+
+    
+    tr{
+      width: 40vw;
+      border: 2px solid black;
+      height: inherit;
+      column-gap: 10pt;
+      
+  padding: 8px; /* Adjust the padding as needed */
+
+
+    }
+    td{
+      width: 35vw;
+      height: 5px;
+      border: 2px solid black;
+      justify-content: center;
+      padding: 5px;
+      
+    }
+
+    h4{
+      width: 54vw;
+      height: 7vh;
+      border-radius: 10px;
+      background-color: rgb(110, 10, 48);
+      color: white;
+
+    }
+    
+    h5{
+      width: 98vw;
+      height: 30vh;
+      border-radius: 0;
+      background-color: black;
+      color: #ffffff;
+     padding-top: 100pt;
+     padding-bottom: 100pt;
+     padding-left: 10pt;
+      font-size: 15pt;
+      font-weight: 300;
+      margin-right: 6pt;
+      text-align: left;
+    }
         </style>
 </head>
+<h2>Your Hub</h2>
+<a href="/" style="text-align: left;"><h3 >TINA</h3></a>
+<body>
+<!-- Sidebar -->
+
+<div class="sidebar" id="sidebar">
+  <!-- Sidebar content goes here -->
+  <li style="width: 12vw;align-content: center;padding-top: 10pt;">Hub Menu</li>
+  <button style="width: 12vw;"><a href="/enroll">Enroll</a></button>
+<button style="width: 12vw;"><a href="/studentAssignments">Assignments</a></button>
+    <button style="width: 12vw;"><a href="/profile">View Profile</a></button>
+      <form action="/logout?_method=DELETE" method="post">
+<button type="submit" style="width: 12vw;">Log out</button>  
+
+</form>
+  
+</div>
+
+  <div class="profile-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+<script>
+  function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+  }
+</script>
+
+
+
+
 <title>My Assignments</title>
-<div class="container">
+<div class="container" style="background-color: transparent;">
 <h1>Completed Assignments:</h1>
 <div class="container">
   <% if (doneAlready.length === 0) { %>
@@ -182,7 +326,7 @@
           <!-- Add more details as needed -->
 
           <!-- Provide download link -->
-          <button><a href="/resubmit/<%= completed._id %>">resubmit Assignment</a></button>
+          <button style="margin-left: 140pt; padding-bottom: 2px;"><a href="/resubmit/<%= completed._id %>">Resubmit Assignment</a></button>
           <!-- Add a delete button if needed -->
           
         </li>
@@ -197,7 +341,7 @@
 <div class="container">
   <% const activeTasks = assigned.filter(assignment => assignment.dueDate >= new Date()); %>
   <% if (activeTasks.length === 0) { %>
-    <p>No active assignments found.</p>
+    <p >No active assignments found.</p>
   <% } else { %>
     <ul>
       <% activeTasks.forEach(assignment => { %>
@@ -211,7 +355,7 @@
           <!-- Add more details as needed -->
 
           <!-- Provide download link -->
-          <button><a href="/submitAssignment/<%= assignment._id %>">Do Assignment</a></button>
+          <button style="margin-left: 140pt; padding-bottom: 2px;"><a href="/submitAssignment/<%= assignment._id %>">Do Assignment</a></button>
           <!-- Add a delete button if needed -->
           
         </li>
@@ -235,13 +379,15 @@
           <p>Due Date: <%= assignment.dueDate.toDateString() %></p>
           <p>Teacher: <%= assignment.teacherName %></p>
           <!-- Add more details as needed -->
-            <button><a href="/submitAssignment/<%= assignment._id %>">Do Assignment</a></button>
+            <button  style="margin-left: 10pt"><a href="/submitAssignment/<%= assignment._id %>">Do Assignment</a></button>
           <!-- Provide download link -->
           
         </li>
       <% }) %>
     </ul>
-  <% } %>
-</div>
-  <br><br><button><a href="/">BACK</a></button>
-</div>
+  <% } %> 
+  
+</div><h5>Created By An Indie Developer <br><br> Contact Us: tinawebsite@gmail.com</h5>
+
+ 
+</div></body>

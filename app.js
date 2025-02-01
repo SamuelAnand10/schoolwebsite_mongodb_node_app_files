@@ -11,6 +11,8 @@ const { GridFSBucket } = require('mongodb');
 const student = require('./models/studentmodel')
 const user = require('./models/usermodel')
 const teacher = require('./models/teachermodel')
+const classes = require('./models/classesmodel')
+const enroll = require('./models/enrollmodel')
 const multer = require('multer');
 const Grid = require('gridfs-stream');
 const {GridFsStorage} = require('multer-gridfs-storage');
@@ -20,17 +22,21 @@ const path = require('path')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
+var http = require('http').Server(app)
+var io = require('socket.io')(http)
+// Create upload middleware
+const Message = require('./models/messagesmodel')
+
+
+
+
 mongoose.connect('mongodb+srv://samueljoshuaanand10:L4KPNTr70G2VQkOv@cluster0.pdigwel.mongodb.net/Node-App?retryWrites=true&w=majority')
 .then(()=> {
+    
     console.log("mongoose database connected")
-    app.listen(3000, ()=> {
-    console.log("listening on port 3000")
+    http.listen(2224, ()=> {
+    console.log("listening on port 2224")
 })
-
-
-
-
-// Create upload middleware
 
 
 
@@ -40,6 +46,7 @@ const { ObjectID } = require('mongodb')
 const { default: cluster } = require('cluster')
 const { config } = require('dotenv')
 const { ObjectId } = require('mongoose/lib/types')
+
 
 
 initializePassport(passport, (email)=> user.findOne({email: email}))
@@ -529,22 +536,40 @@ app.post('/delete/:id/:testNumber/:class/:subject', async (req, res) => {
 
 app.get('/studentAssignments', async (req, res) => {
   try {
+    
+    
     const stud = await student.findOne({ name: req.user.name });
     const studentSubjects = stud.subjects;
     const studentClass = stud.year;
-
+    var studentAssignments = []
+    const testvalue = await teacher.find();
     const doneAssignments = await assignment.find({ teacherName: req.user.name });
     const dontInclude = doneAssignments.map((assignment) => assignment.subject);
+    
 
     const filteredSubjects = studentSubjects.filter((subject) => !dontInclude.includes(subject));
-
-    const assignmentPromises = filteredSubjects.map(async (subj) => {
-      const teach = await teacher.findOne({ 'subjects.name': subj, 'subjects.years': { $elemMatch: { holds: studentClass } } });
-      return assignment.find({ subject: subj, class: studentClass, teacherName: teach.name });
-    });
-
-    const studentAssignments = await Promise.all(assignmentPromises);
-
+    
+    if(filteredSubjects.length === 0){}
+    else{
+  
+      console.log(filteredSubjects)
+      const assignmentPromises = filteredSubjects.map((subj) => {
+        console.log("subj:", subj);
+        const teach = testvalue.find((t) => {
+         console.log("Teacher:", t.name);
+         return t.subjects.some((subject) => {
+            console.log("Subject:", subject.name);
+           console.log("Years:", subject.years);
+            return subject.name === subj && subject.years.some((year) => year === studentClass);
+          });
+        });
+  
+        console.log("Teacher found for subject", subj, ":", teach);
+  
+       return assignment.find({ subject: subj, class: studentClass, teacherName: teach.name });
+     });
+     console.log("chicken", assignmentPromises)
+        studentAssignments = await Promise.all(assignmentPromises);}
     res.render('studentAssignments.ejs', { assigned: studentAssignments.flat(), doneAlready: doneAssignments });
   } catch (error) {
     console.error(error);
@@ -662,14 +687,343 @@ app.get('/enroll', async(req,res)=>{
 
 })
 
-app.post('/enroll', async (req, res) => {
+
+app.post('/enrolling', async(req,res)=>{
+  const stud = await student.findOne({name: req.user.name})
+  
+  await enroll.create({
+    name: req.user.name,
+    class: stud.year,
+    subject: req.body.subject,
+  })
+
+  res.redirect('/')
+})
+
+
+
+app.get('/enrollingdecision', async (req, res) => {
   try {
-    const current = await student.findOne({ name: req.user.name });
-    current.subjects.push(req.body.subject);
-    await current.save(); // Save the updated student document
-    res.redirect('/'); // Redirect to the desired page after enrollment
+    const sir = await teacher.findOne({ name: req.user.name });
+
+    const promises = sir.subjects.map(async (subject) => {
+      return Promise.all(subject.years.map(async (year) => {
+        return await enroll.find({ subject: subject.name, class: year });
+      }));
+    });
+    console.log(promises)
+    const results = await Promise.all(promises);
+    console.log(results)
+    const flattened = results.flatMap(enrollees => enrollees).filter(enrollees => enrollees.length > 0);
+    console.log(flattened)
+
+    res.render('enrolledDecision.ejs', { enrollees: flattened });
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching enrolling decisions:', error);
+    res.status(500).send('An error occurred while fetching enrolling decisions.');
+  }
+});
+
+app.post('/enrollingdecision/:id', async (req, res) => {
+  try {
+    const enrolled = await enroll.findById(req.params.id);
+    const verdict = req.body.choice;
+
+    if (verdict === 'true') {
+      const current = await student.findOne({ name: enrolled.name });
+      current.subjects.push(enrolled.subject);
+      await current.save();
+    }
+
+    await enroll.deleteOne({ _id: req.params.id });
+
+    res.redirect('/enrollingdecision');
+  } catch (error) {
+    console.error('Error processing enrolling decision:', error);
+    res.status(500).send('An error occurred while processing enrolling decision.');
+  }
+});
+
+
+app.get('/messages/:user', async (req, res) => {
+  const user = req.params.user;
+  try {
+    const allMessages = await Message.find();
+    const messageInstance = allMessages.find(
+      (current) =>
+        current.people.includes(user) && current.people.includes(req.user.name)
+    );
+
+    if (!messageInstance) {
+      const newMessageInstance = await Message.create({
+        people: [user, req.user.name],
+        messages:[]
+      });
+      res.send({ message: newMessageInstance, id: newMessageInstance._id });
+    } else {
+      res.send({ message: messageInstance, id: messageInstance._id });
+    }
+  } catch (error) {
+    res.sendStatus(500);
+    console.error(error);
+  }
+});
+
+// Route to add a new message to the existing conversation
+app.post('/message/:id', async (req, res) => {
+  try {
+    const messageInstance = await Message.findById(req.params.id);
+    if (!messageInstance) {
+      return res.sendStatus(404); // Not found
+    }
+
+    messageInstance.messages.push(req.body);
+    await messageInstance.save();
+
+    io.emit('message', req.body); // Emit the new message to all connected clients
+
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
+    console.error(error);
+  }
+});
+
+
+
+
+io.on('connection', (socket) => {
+  console.log('a user connected')
+})
+
+app.get('/allchats', async (req, res) => {
+  if (req.user.duty === 'student') {
+    const stud = await student.findOne({ name: req.user.name });
+    const studentSubjects = stud.subjects;
+    const studentClass = stud.year;
+
+    const allteachers = await teacher.find();
+    console.log(allteachers)
+    console.log(studentClass,studentSubjects)
+
+    const teachers = allteachers.filter((teach) =>
+      teach.subjects.some((subject) => studentSubjects.includes(subject.name) && subject.years.includes(studentClass))
+    );
+    console.log(teachers)
+    res.render('allchatsstudents.ejs', { teachers: teachers });
+  } 
+  else {
+    const prof = await teacher.findOne({ name: req.user.name });
+    const distinctSubjects = prof.subjects.map((subject) => subject.name);
+
+    const allStudents = await student.find();
+    const kido = [];
+
+    allStudents.forEach((stud) => {
+      const distinctStudent = stud.subjects;
+
+      distinctStudent.forEach((guy) => {
+        distinctSubjects.forEach((sub) => {
+          if (guy === sub) {
+            const taught = prof.subjects.some((indi) => indi.name === sub && indi.years.includes(stud.year));
+            if (taught) {
+              kido.push(stud);
+            }
+          }
+        });
+      });
+    });
+    console.log(kido)
+    res.render('allchatsteacher.ejs', { students: kido });
+  }
+});
+
+app.get('/chat/:messanger', (req, res) => {
+  // Assuming the 'user' object contains the logged-in user's information
+  res.render('chat.ejs', { username: req.user.name, messanger: req.params['messanger'] });
+});
+
+
+app.get('/lessonsStudents/:subject', async(req,res)=>{
+  const person = await student.findOne({name: req.user.name})
+  const subjects = await classes.findOne({class: person.year, subject: req.params.subject})
+  res.render('lessonsStudents.ejs',{lessons: subjects,name: req.user.name})
+})
+
+app.get("/classesStudents", async (req, res) => {
+  const stud = await student.findOne({ name: req.user.name });
+  const subjects = await Promise.all(stud.subjects.map(async (subject) => {
+    var indie = await classes.findOne({ class: stud.year, subject: subject });
+    if (!indie) {
+      indie = await classes.create({ subject: subject, class: stud.year, lessons: [] });
+    }
+    return indie;
+  }));
+
+  res.render('classesS.ejs', { lessons: subjects });
+});
+
+app.get('/classesTeachers', async (req, res) => {
+  try {
+    const prof = await teacher.findOne({ name: req.user.name });
+    
+    const subjects = await Promise.all(prof.subjects.flatMap(async (subject) => {
+      // Use regular for loop instead of map
+      const yearPromises = [];
+      for (const year of subject.years) {
+        const indie = await classes.findOne({ class: year, subject: subject.name });
+        if (!indie) {
+          const newIndie = await classes.create({ subject: subject.name, class: year, lessons: [] });
+          yearPromises.push(newIndie); // Push the new document to the array
+        } else {
+          yearPromises.push(indie); // Push the existing document to the array
+        }
+      }
+      return yearPromises;
+    }));
+
+    // Flatten the array of arrays of promises
+    const resolvedSubjects = await Promise.all(subjects.flat());
+
+    res.render('classesT.ejs', { lessons: resolvedSubjects });
+  } catch (error) {
+    // Handle errors
+    console.error('Error:', error);
+    // Respond with an error message or redirect to an error page
     res.status(500).send('Internal Server Error');
   }
 });
+
+
+
+app.get('/lessonsTeachers/:subject/:class', async(req,res)=>{
+  const subjects = await classes.findOne({class: req.params.class, subject: req.params.subject})
+  res.render('lessonsTeachers.ejs',{lessons: subjects,name: req.user.name})
+})
+
+app.get('/deleteLessons/:id/:title', async(req,res)=>{
+    const lesson = await classes.findById(req.params.id)
+    const lessonIndex = lesson.lessons.findIndex(lesson => lesson.title === req.params.title);
+    if (lessonIndex !== -1) {
+      lesson.lessons.splice(lessonIndex, 1);
+      await lesson.save();
+    }
+
+ 
+    res.render('lessonsTeachers.ejs',{lessons: lesson,name: req.user.name})
+})
+
+app.get('/deleteFiles/:id/:file/:title', async (req, res) => {
+  try {
+    const PleaseWork = new mongoose.mongo.GridFSBucket(connect.db, {
+      bucketName: "uploads"
+    });
+
+    // Delete the file from GridFS
+    console.log("File in question:", req.params.file);
+    
+
+    // Find the lesson in the classes schema
+    const lesson = await classes.findById(req.params.id);
+    console.log(lesson)
+    // Find the specific lesson with matching title
+    const spec = lesson.lessons.find(lesson => lesson.title === req.params.title);
+    console.log(spec)
+    // Find the index of the file in the spec's files array
+    const lessonIndex = spec.files.findIndex(file => file.file.equals(new mongoose.Types.ObjectId(req.params.file)));
+    console.log(lessonIndex)
+    if (lessonIndex !== -1) {
+      // Remove the file from the files array
+      spec.files.splice(lessonIndex, 1);
+
+      // Save the updated lesson and spec
+      await lesson.save();
+      
+await PleaseWork.delete(new mongoose.Types.ObjectId(req.params.file));
+      // Redirect to the appropriate view based on user role
+      if (req.user.duty === 'teacher') {
+        res.render('lessonsTeachers.ejs', { lessons: lesson, name: req.user.name });
+      } else {
+        res.render('lessonsStudents.ejs', { lessons: lesson, name: req.user.name });
+      }
+    } else {
+      // Handle the case where the file wasn't found in the spec's files array
+      console.log('File not found in lesson spec:', req.params.file);
+      res.status(404).send('File not found.');
+    }
+  } catch (error) {
+    console.error('Error deleting file:', error);
+    res.status(500).send('An error occurred while deleting the file.');
+  }
+});
+
+
+app.post('/uploadFile/:id/:title',upload.single('file'), async(req,res)=>{
+  const lesson = await classes.findById(req.params.id)
+  const specific = lesson.lessons.find(lesson=> lesson.title === req.params.title)
+  await specific.files.push({
+    name: req.user.name,
+    duty: req.user.duty,
+    file: req.file.id,
+  })
+  await specific.save()
+  await lesson.save()
+
+  if(req.user.duty === 'teacher'){
+    res.render('lessonsTeachers.ejs',{lessons: lesson,name: req.user.name})}
+    else{
+      res.render('lessonsStudents.ejs',{lessons: lesson,name: req.user.name})
+    }
+})
+
+
+app.get('/newLesson/:id',async(req,res)=>{
+  res.render('newLesson.ejs',{id: req.params.id})
+})
+
+
+app.post('/newLesson/:id',async(req,res)=>{
+  
+  const lecture = await classes.findById(req.params.id)
+  
+
+  const check = lecture.lessons.find(lesson=> lesson.title === req.body.title)
+  if(!check){
+  const lesson = {
+      title: req.body.title,
+      description: req.body.description,
+      files:[]
+    }
+
+
+  await lecture.lessons.push(lesson)
+  await lecture.save()
+
+  res.render('lessonsTeachers.ejs',{lessons: lecture,name: req.user.name})}
+  else{
+    res.render('newLesson.ejs', {id: req.params.id})
+  }
+})
+
+app.get('/updateLessons/:id/:title',async(req,res)=>{
+  const lesson = await classes.findById(req.params.id)
+  const lect = lesson.lessons.find(lesson=> lesson.title === req.params.title)
+  res.render('updateLesson.ejs',{lesson: lect, id: req.params.id})
+})
+
+app.post('/updateLessons/:id/:title', async(req,res)=>{
+  const lesson = await classes.findById(req.params.id)
+  var instant = lesson.lessons.find(lesson=> lesson.title === req.params.title)
+  var checker = lesson.lessons.find(lesson=> lesson.title === req.body.title && !(lesson._id.equals(new mongoose.Types.ObjectId(instant._id))))
+  
+  if(!checker){
+  instant.title = req.body.title
+  instant.description = req.body.description
+  await instant.save()
+  await lesson.save()
+
+  res.render('lessonsTeachers.ejs',{lessons: lesson,name: req.user.name})}
+  else{
+    res.redirect('/updateLesson/'+ req.params.id + '/'+ req.params.title)
+  }
+})

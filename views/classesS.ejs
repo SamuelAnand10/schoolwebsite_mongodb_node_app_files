@@ -1,0 +1,318 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .profile-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      border-radius: 10px;
+      height: 30px;
+      width: 30px;
+      align-items: center;
+      justify-content: center;
+      
+         /* Add your desired icon styles */
+  }
+  
+  /* Styles for the sidebar */
+  .sidebar {
+      position: fixed;
+      top: 90;
+      bottom: 50;
+      right: -300px; /* Off-canvas initially */
+      width: 200px;
+      height: 60vh;
+      background-color: #b78d95;
+      transition: right 0.3s ease-in-out; /* Smooth transition animation */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-radius: 10px;
+  
+     
+    
+      
+      /* Add your desired sidebar styles */
+  }
+  
+  .sidebar.active {
+      right: 0; /* Show the sidebar when active */
+  }
+      body{
+        background-image: url("https://4kwallpapers.com/images/wallpapers/texture-dark-background-purple-2732x2732-3086.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Raleway, sans-serif;
+        font-weight: 400;
+        color: #ffffff;
+        margin: 0;
+        padding: 0; /* Center text horizontally */
+        display: flex;
+        align-items: center;
+        justify-content: center;}
+      h1{
+          
+      font-family: Raleway, sans-serif;
+      font-size: 40pt;
+      font-weight: 400;
+      width: 60vw;
+      height: 10vh;
+      padding: 10px;
+      background-color: rgb(110, 10, 48);
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        justify-content: center; /* Center text vertically */
+        align-items: center;
+        border-radius: 10px;
+      }
+      .second{
+        width: 55vw;
+        font-size: 25pt;
+        height: 5vh;
+        justify-content: left;
+        background-color: #e8af30;
+        color: black;
+      }
+      h2{
+          width: 100vw;
+          height: 7vh;
+          font-size: 30pt;
+          font-weight: 600;
+          background-color: #30003D;
+          color: #ffffff;
+          display: flex;
+          position: fixed;
+          top:-35;
+          justify-content: center;
+      }
+  
+      h3{
+        width: 100vw;
+          height: 7vh;
+          font-size: 30pt;
+          font-weight: 600;
+          color: #ffffff;
+          display: flex;
+          position: fixed;
+          top:-35;
+          margin-left: 40pt;
+      }
+      
+      p{
+          font-size: smaller;
+          font-weight: 200;
+      }
+      
+      li{
+      
+          font-size: 25pt;
+          font-weight: 700;
+          width: 13vw;
+        height: 7vh;
+        background-color: #F7E7CE ;
+        color: rgb(0, 0, 0);
+        border-radius: 10px;
+        margin-top: 0pt;
+        margin-bottom: 115pt;
+        margin-left: 2px;
+        list-style: none;
+        
+      }
+      
+      ul{
+          font-size: small;
+      
+      }
+      
+      button{
+          font-family: Raleway, sans-serif;
+          font-size: 25px;
+          font-weight: 500;
+          padding: 5px;
+          background-color: rgb(255, 195, 0);
+          width: 13vw;
+        height: 5vh;
+        margin-left: 5px;
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        justify-content: center;
+        border-radius: 10px;
+        
+      
+      }
+      div{
+          font-size: 25px;
+          width: 40vw;
+        height: 10vh;
+        padding: 10px;
+          font-weight: 400;
+          background-color: #b78d95;
+                text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        border-radius: 10px;
+        gap: 10px;
+        
+      }
+      
+      a {
+        width: 40vw;
+        height: 10vh;
+          font-family: Raleway, sans-serif;
+          font-size: 25px;
+          text-decoration: none;
+          font-weight: 500;
+          text-align: center;
+        }
+      
+        label {
+        margin-bottom: 5px;
+      }
+      
+        .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      .register-link {
+        margin-top: 10px;
+      }
+      .register-link a {
+        display: inline-block;
+        font-size: smaller;
+        text-decoration: none;
+      }
+        .container {
+        display: flex;
+        flex-direction: column;
+        column-gap: 1px;
+        gap: 1px;
+        align-items: center;
+        width: 70vw;
+        height: 45vw;
+        background-color: rgb(75, 0, 130,0.75);
+        border-radius: 10px;
+        margin-top: 40pt;
+        margin-bottom: 10pt;
+        
+      }
+      .input2{
+          width: 10vw;
+        height: 5vh;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      input{
+          width: 10vw;
+        height: 5vh;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      table{
+        font-size: 25px;
+          width: 50vw;
+        height: 40vh;
+        padding: 10px;
+          font-weight: 400;
+          background-color: #e8af30;
+        text-align: center; /* Center text horizontally */
+        display: flex; /* Add flexbox */
+        border-radius: 10px;
+        gap: 0px;
+        border-collapse: collapse;
+        justify-content: center; /* Merge borders for adjacent cells */
+        color: black;
+    /* Adjust the width as needed */
+  }
+  
+      
+      tr{
+        width: 40vw;
+        border: 2px solid black;
+        height: inherit;
+        column-gap: 10pt;
+        
+    padding: 8px; /* Adjust the padding as needed */
+  
+  
+      }
+      td{
+        width: 35vw;
+        height: 5px;
+        border: 2px solid black;
+        justify-content: center;
+        padding: 5px;
+        
+      }
+  
+      h4{
+        width: 54vw;
+        height: 7vh;
+        border-radius: 10px;
+        background-color: rgb(110, 10, 48);
+        color: white;
+  
+      }
+      h5{
+        width: 98.5vw;
+        height: 30vh;
+        border-radius: 0;
+        background-color: black;
+        color: #ffffff;
+       padding-top: 100pt;
+       padding-bottom: 100pt;
+       padding-left: 10pt;
+        font-size: 15pt;
+        font-weight: 300;
+        margin-right: 6pt;
+        text-align: left;
+      }
+          </style>
+  </head>
+  <h2>Your Hub</h2>
+  <h3>TINA</h3>
+  <body>
+  <!-- Sidebar -->
+  
+  <div class="sidebar" id="sidebar">
+    <!-- Sidebar content goes here -->
+    <li>Hub Menu</li>
+    <button><a href="/enroll">Enroll</a></button>
+  <button><a href="/studentAssignments">Assignments</a></button>
+      <button><a href="/profile">View Profile</a></button>
+      <button><a href="/allchats">Chats</a></button>
+        <form action="/logout?_method=DELETE" method="post">
+  <button type="submit">Log out</button>  
+  
+  </form>
+    
+  </div>
+  
+    <div class="profile-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+  <script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
+  </script>
+  
+  
+  
+  <div class="container">
+    
+    <% lessons.forEach((lesson) => { %>
+      <h1>Subjects: <%= lesson.subject %>, Year: <%= lesson.class %> </h1>
+      <button><a href="/lessonsStudents/<%=lesson.subject%>">Enter</a></button>
+    <% }); %>
+  <h5>Created By An Indie Developer <br><br> Contact Us: tinawebsite@gmail.com</h5>
+  </div>
+  
+  
+  
+  
+  </body>
+  

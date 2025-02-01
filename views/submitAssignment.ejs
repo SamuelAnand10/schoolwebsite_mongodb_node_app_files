@@ -1,171 +1,374 @@
-
-<!-- File Download Links -->
+<!DOCTYPE html>
+<html>
 <head>
- 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
-
+  <title>Mark Submission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.icloud.com/iclouddrive/0c3r4UAaKrL283TIcYX-DzX5g#stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-        
-    body{
-      background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      font-family: Raleway, sans-serif;
-      font-weight: 400;
-      color: #ffffff;
-      margin: 0;
-      padding: 0; /* Center text horizontally */
-      display: flex;
-      align-items: center;
-      justify-content: center;}
-    h1{
-        
-    font-family: Raleway, sans-serif;
-    font-size: 70px;
-    font-weight: 500;
-    width: 50vw;
-    height: 20vh;
-    padding: 10px;
-      background-color: rgb(218, 247, 166);
-      text-align: center; /* Center text horizontally */
-      display: flex; /* Add flexbox */
-      justify-content: center; /* Center text vertically */
-      align-items: center;
-      border-radius: 10px;
-    }
+    .profile-icon {
+     position: fixed;
+     top: 20px;
+     right: 20px;
+     cursor: pointer;
+     border-radius: 10px;
+     height: 30px;
+     width: 30px;
+     align-items: center;
+     justify-content: center;
+     
+        /* Add your desired icon styles */
+ }
+ 
+ /* Styles for the sidebar */
+ .sidebar {
+     position: fixed;
+     top: 90;
+     bottom: 50;
+     right: -300px; /* Off-canvas initially */
+     width: 200px;
+     height: 60vh;
+     background-color: rgb(0, 0, 0.0.5);
+     transition: right 0.3s ease-in-out; /* Smooth transition animation */
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     border-radius: 10px;
+     margin-top: -20vh;
+     margin-bottom: 20vh;
     
-    h2{
-        font-size: small;
-    }
+ 
     
-    p{
-        font-size: smaller;
-        font-weight: 200;
-    }
-    
-    li{
-    
-        font-size: medium;
-        width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(218, 247, 166);
-      border-radius: 10px;
-    }
-    
-    ul{
-        font-size: small;
-    
-    }
-    
-    button{
-        font-family: Raleway, sans-serif;
-        font-size: 25px;
-        font-weight: 400;
-        padding: 5px;
-        background-color: rgb(255, 195, 0);
-        width: 25vw;
-      height: 7vh;
-      text-align: center; /* Center text horizontally */
-      display: flex; /* Add flexbox */
-      justify-content: center;
-      border-radius: 10px;
-    
-    }
-    
-    div{
-        font-size: 25px;
-        width: 40vw;
-      height: 10vh;
-      padding: 10px;
-      background-color: rgba(144, 12, 63);
-      text-align: center; /* Center text horizontally */
-      display: flex; /* Add flexbox */
-      border-radius: 10px;
-      gap: 10px;
+   
+     
+     /* Add your desired sidebar styles */
+ }
+ 
+ .sidebar.active {
+     right: 0; /* Show the sidebar when active */
+ }
+     body{
+       background-image: url("https://4kwallpapers.com/images/wallpapers/texture-dark-background-purple-2732x2732-3086.jpg");
+       background-size: cover;
+       background-repeat: repeat-y;
+       font-family: Raleway, sans-serif;
+       font-weight: 400;
+       color: #ffffff;
+       margin: 0;
+       padding: 0; /* Center text horizontally */
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-right: 12vw;
+       margin-top: 7vh;
+     }
+     h1{
+         
+     font-family: Raleway, sans-serif;
+     font-size: 40pt;
+     font-weight: 400;
+     width: 60vw;
+     height: 10vh;
+     padding: 10px;
+     padding-bottom: 0px;
+     background-color: rgb(110, 10, 48);
+       text-align: center; /* Center text horizontally */
+       display: flex; /* Add flexbox */
+       justify-content: center; /* Center text vertically */
+       align-items: center;
+       border-radius: 10px;
       
-    }
-    
-    a {
-        font-family: Raleway, sans-serif;
-        font-size: 25px;
-        text-decoration: none;
-        font-weight: 400;
-        text-align: center;
-      }
-    
-      form{
-        font-size: 25px;
-        border-radius: 10px;
-        width: 50vw;
-      height: 30vh;
-      padding: 10px;
-      background-color: rgb(88, 24, 69);
-      display:flex;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 10px;
-      /* Add flexbox */ /* Center text vertically */
-      }
-      label {
-      margin-bottom: 5px;
-    }
-    
-      .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-    .register-link {
-      margin-top: 10px;
-    }
-    .register-link a {
-      display: inline-block;
-      font-size: smaller;
-      text-decoration: none;
-    }
-      .container {
-      display: flex;
-      flex-direction: column;
-      column-gap: 10px;
-      gap: 5px;
-      align-items: center;
-      width: 70vw;
-      height: 40vw;
-      background-color: rgb(178, 106, 35);
-      border-radius: 10px;
-    }
-    input2{
-        width: 10vw;
-      height: 5vh;
-      padding: 2px;
-      border-radius: 5px;
-    }
-    input{
-        width: 10vw;
-      height: 5vh;
-      padding: 2px;
-      border-radius: 5px;
-    }
-        </style>
-  <style>
-    #pdf-viewer {
-      overflow-y: scroll;
-      height: 100vh;
-    }
-    canvas {
-      display: block;
-      margin: 16px auto;
-    }
-  </style>
+       margin-left: -5vw;
+     }
+     .second{
+       width: 55vw;
+       font-size: 25pt;
+       height: 5vh;
+       justify-content: left;
+       background-color: #e8af30;
+       color: black;
+     }
+     h2{
+         width: 100vw;
+         height: 7vh;
+         font-size: 30pt;
+         font-weight: 600;
+         background-color: #30003D;
+         color: #ffffff;
+         display: flex;
+         position: fixed;
+         top:-35;
+         justify-content: center;
+         margin-left: 12vw;
+         margin-top: -115vh;
+         margin-bottom: 24vh;
+     }
+ 
+     h3{
+       width: 10vw;
+         height: 7vh;
+         font-size: 30pt;
+         font-weight: 600;
+         color: #ffffff;
+         display: flex;
+         position: fixed;
+         top:0;
+         margin-left: 90pt;
+         margin-top: 0vh;
+     }
+     
+     p{
+         font-size: smaller;
+         font-weight: 200;
+     }
+     
+     li{
+     
+         font-size: 25pt;
+         font-weight: 700;
+         width: 13vw;
+       height: 7vh;
+       background-color:#30003D;
+       color: rgb(255, 255, 255);
+       border-radius: 10px;
+       margin-top: 0pt;
+       margin-bottom: 115pt;
+       margin-left: 2px;
+       list-style: none;
+       
+     }
+     
+     ul{
+         font-size: small;
+     
+     }
+     
+     button{
+         font-family: Raleway, sans-serif;
+         font-size: 25px;
+         font-weight: 500;
+         padding: 5px;
+         background-color: rgb(255, 195, 0);
+         width: 13vw;
+       height: 5vh;
+       margin-left: 5px;
+       text-align: center; /* Center text horizontally */
+       display: flex; /* Add flexbox */
+       justify-content: center;
+       border-radius: 10px;
+       
+     
+     }
+     div{
+         font-size: 25px;
+         width: 40vw;
+       height: 10vh;
+       padding: 10px;
+         font-weight: 400;
+         background-color: rgb(0,0,0,0.5);
+               text-align: center; /* Center text horizontally */
+       display: flex; /* Add flexbox */
+       border-radius: 10px;
+       gap: 10px;
+       
+     }
+     
+     a {
+       width: 50vw;
+       height: 10vh;
+         font-family: Raleway, sans-serif;
+         font-size: 20pt;
+         text-decoration: none;
+         font-weight: 300;
+         text-align: center;
+         color: #6d048b;
+         margin-left: 20vw;
+         text-align: left;
+         margin-bottom: 1vh;
+         
+         
+       }
+     
+       label {
+       margin-bottom: 5px;
+     }
+     
+       .button-container {
+       display: flex;
+       justify-content: center;
+       gap: 10px;
+     }
+     .register-link {
+       margin-top: 10px;
+     }
+     .register-link a {
+       display: inline-block;
+       font-size: smaller;
+       text-decoration: none;
+     }
+       .container {
+       display: flex;
+       flex-direction: column;
+       column-gap: 1px;
+       gap: 1px;
+       align-items: center;
+       width: 70vw;
+       height: 120vh;
+       background-color: rgb(75, 0, 130,0.75);
+       border-radius: 10px;
+       margin-top: 40pt;
+       margin-bottom: 10pt;
+       margin-left: 0vw;
+       margin-right: 10vw;
+       
+     }
+     .input2{
+         width: 10vw;
+       height: 5vh;
+       padding: 2px;
+       border-radius: 5px;
+     }
+     input{
+         width: 10vw;
+       height: 5vh;
+       padding: 2px;
+       border-radius: 5px;
+     }
+     table{
+       font-size: 25px;
+         width: 50vw;
+       height: 40vh;
+       padding: 10px;
+         font-weight: 400;
+         background-color: #e8af30;
+       text-align: center; /* Center text horizontally */
+       display: flex; /* Add flexbox */
+       border-radius: 10px;
+       gap: 0px;
+       border-collapse: collapse;
+       justify-content: center; /* Merge borders for adjacent cells */
+       color: black;
+   /* Adjust the width as needed */
+ }
+ 
+     
+     tr{
+       width: 40vw;
+       border: 2px solid black;
+       height: inherit;
+       column-gap: 10pt;
+       
+   padding: 8px; /* Adjust the padding as needed */
+ 
+ 
+     }
+     td{
+       width: 35vw;
+       height: 5px;
+       border: 2px solid black;
+       justify-content: center;
+       padding: 5px;
+       
+     }
+ 
+     h4{
+       width: 54vw;
+       height: 7vh;
+       border-radius: 10px;
+       background-color: rgb(110, 10, 48);
+       color: white;
+ 
+     }
+     h5{
+       width: 98vw;
+       height: 30vh;
+       border-radius: 0;
+       background-color: black;
+       color: #ffffff;
+      padding-top: 100pt;
+      padding-bottom: 100pt;
+      padding-left: 10pt;
+       font-size: 15pt;
+       font-weight: 300;
+       margin-left: 2vw;
+       text-align: left;
+       margin-top: 40vh;
+     }
+     h6{
+       width: 30vw;
+       height: 40vh;
+       background-color:rgba(3, 3, 255, 0.5);
+       border-radius: 10pt;
+       text-align: left;
+       padding: 20pt;
+       font-size: 15pt;
+       font-weight: 300;
+     }
+     form{
+       margin-top: 10vh;
+       justify-content: left;
+       width: 50vw;
+       height: 30vh;
+       padding-bottom: 10vh;
+       padding-top: 10vh;
+       background-color: rgb(109, 4, 139,0.7);
+       margin-bottom: 10vh;
+       border-radius: 5pt;
+       margin-right: 5vw;
+     }
+     select{
+       border-radius: 5px;
+       width: 17vw;
+       height: 5vh;
+       font-size: 11pt;
+       font-weight: 400;
+       font-family: Raleway;
+     }
+ 
+     .pdf-viewer-container {
+       width: 40vw;
+       height: 80vh;
+       overflow: auto;
+       background-color: #00000056;
+       border-radius: 10px;
+       padding: 10px;
+       margin-left: 0vw;
+       flex-direction: column;
+     }
+ 
+     .pdf-page {
+       width: 100%;
+       height: auto;
+     }
+   </style>
+</head>
+<body>
+  <h2>Your Hub</h2>
+  <a href="/" style="text-align: left;"><h3 style="margin-left: -12vw;">TINA</h3></a>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Sidebar content goes here -->
+    <li style="margin-bottom: 10vh;height: 7vh">Hub Menu</li>
+    <a href="/teacherProfile" style="height: 15vh;width: 10vw;margin-left: 20pt;">View Profile</a>
+  <a href="/myStudents"style="margin-left: 20pt;"> My students</a>
+  <a href="/createAssignment"style="margin-bottom: -50vh;margin-left: 20pt;">Assignments</a>
+  <form action="/logout?_method=DELETE"  method="post" style="height:0; width: 0;margin-bottom: -5vh;">
+   <button type="submit">Log out</button>
+    </form>
+  </div>
+
+  <div class="profile-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
   <script>
+     function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
     function loadPDF(url) {
       fetch(url)
         .then(response => response.arrayBuffer())
@@ -200,23 +403,24 @@
 
     loadPDF('/download/<%= assigned.file %>'); 
   </script>
-</head>
-<h1>Assignment</h1>
+</head><body><div class="container">
+<h1 style="margin-left: 5vw;">Assignment</h1>
 <ul>
-  <div id="pdf-viewer"></div>
+  <div id="pdf-viewer" class="pdf-viewer-container" ></div>
  
   
-    <li>
-      <button><a href="/download/<%= assigned.file %>">Download Test Number: <%= assigned.testNumber %></a></button>
+    <li style="background-color: transparent;">
+      <button style="width: 40vw;margin-left: 0vw;justify-content: left;text-align: left;"><a href="/download/<%= assigned.file %>" style="margin-left: 20pt">Download Test Number: <%= assigned.testNumber %></a></button>
     </li>
 </ul>
 
-<h1>File Upload</h1>
+<h1 style="margin-top: 10vh;margin-bottom: 0vh;">File Upload</h1>
 <form action="/upload/" method="POST" enctype="multipart/form-data">
-  <input type="file" name="file" />
+  <input type="file" name="file" style="font-size: 12pt;font-weight: 300;font-family: Raleway;width: 25vw;height: 5vh;" />
   <input type="hidden" name="currentAssignment" value="<%= assigned._id %>">
-  <button type="submit">Upload</button>
+  <button type="submit" style="margin-left: 30vw;margin-top: -5vh;">Upload</button>
 </form>
 
-<
-<br><br><button><a href="/studentAssignments">BACK</a></button>
+<br><br><button><a href="/studentAssignments" style="margin-left: 3vw;">BACK</a></button>
+<h5>Created By An Indie Developer <br><br> Contact Us: tinawebsite@gmail.com</h5>
+</div></body>

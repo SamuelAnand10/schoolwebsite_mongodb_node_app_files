@@ -2,7 +2,7 @@
     <style>
         
 body{
-  background-image: url("https://marketplace.canva.com/EAFKazjWmMg/1/0/1600w/canva-minimalist-abstract-desktop-wallpaper-8vx5pcfhbAM.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/previews/008/716/310/original/abstract-art-backdrop-background-backgrounds-banner-black-blue-bright-brochure-business-color-colorful-concept-creative-curve-dark-design-digital-elegant-element-fluid-geometric-free-vector.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Raleway, sans-serif;
@@ -12,16 +12,16 @@ body{
   padding: 0; /* Center text horizontally */
   display: flex;
   align-items: center;
-  justify-content: center;}
+  justify-content: flex-end;}
 h1{
     
 font-family: Raleway, sans-serif;
-font-size: 70px;
-font-weight: 500;
-width: 50vw;
+font-size: 50px;
+font-weight: 700;
+width: 30vw;
 height: 20vh;
 padding: 10px;
-  background-color: rgb(218, 247, 166);
+  background-color: 		#e0b73d;
   text-align: center; /* Center text horizontally */
   display: flex; /* Add flexbox */
   justify-content: center; /* Center text vertically */
@@ -58,22 +58,23 @@ button{
     font-size: 25px;
     font-weight: 400;
     padding: 5px;
-    background-color: rgb(255, 195, 0);
-    width: 25vw;
+    background-color: #e0b73d;
+    width: 15vw;
   height: 7vh;
   text-align: center; /* Center text horizontally */
   display: flex; /* Add flexbox */
   justify-content: center;
   border-radius: 10px;
+  color: #000000;
 
 }
 
 div{
     font-size: 25px;
-    width: 40vw;
+    width: 20vw;
   height: 10vh;
   padding: 10px;
-  background-color: rgba(144, 12, 63);
+  background-color: rgb(110, 10, 48);
   text-align: center; /* Center text horizontally */
   display: flex; /* Add flexbox */
   border-radius: 10px;
@@ -92,10 +93,10 @@ a {
   form{
     font-size: 25px;
     border-radius: 10px;
-    width: 50vw;
+    width: 30vw;
   height: 30vh;
   padding: 10px;
-  background-color: rgb(88, 24, 69);
+  background-color: #e8af30;
   display:flex;
   text-align: center;
   justify-content: center;
@@ -122,24 +123,56 @@ a {
   text-decoration: none;
 }
   .container {
+  padding: 70px 0;
   display: flex;
   flex-direction: column;
   column-gap: 10px;
-  gap: 5px;
+  gap: 25px;
   align-items: center;
-  width: 70vw;
-  height: 40vw;
-  background-color: rgb(178, 106, 35);
+  width: 50vw;
+  height: 41vw;
+  background-color: 		rgb(71, 33, 124,0.7);
+  border-radius: 0px;	
+  justify-content: flex-start;
+}
+.left-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Gap between the two containers */
+        width: 40vw;
+        height: 20vw;
+         background-color: rgba(0, 65, 90, 0.5);
+        border-radius: 10px;
+        justify-content: flex-start; /* Updated to align content at the top */
+        padding: 10px 10px; /* Added top padding to create a gap at the top */
+    }
+
+    .left-container {
+        width: 40vw; /* Adjust the width as needed */
+        height: 38.5vw; /* Adjust the height as needed */
+        /* Translucent background color */
+        background-color: rgba(1, 1, 1, 0);
+        border-radius: 10px;
+       /* Center the left container horizontally */
+       margin: 0 auto ;
+       
+    }
+.text{
+ background-color: rgb(255, 255, 255,0);
+ font-size: 25px;
+    width: 35vw;
+  height: 50vh;
+  padding: -10px;
+  text-align: center; /* Center text horizontally */
+  display: flex; /* Add flexbox */
   border-radius: 10px;
+  gap: 10px;
+  
 }
-input2{
-    width: 10vw;
-  height: 5vh;
-  padding: 2px;
-  border-radius: 5px;
-}
+
 input{
-    width: 10vw;
+    width: 7vw;
   height: 5vh;
   padding: 2px;
   border-radius: 5px;
@@ -151,12 +184,14 @@ input{
 
 </head>
 <body>
+ <div class="left-container"><div class="left-column" style="color: #ffffff;"><div class="text" style="font-size: 40px; font-weight: 600;align-items: center;justify-content: center;">Welcome to TINA!</div><div class="text"> An all in one school system. Here teachers can create assignment, student can easily access their grades and so much more. If you dont have an account please register as a student or as a teacher respectively.</div> </div></div> 
 <div class="container">
-<h1>WELCOME TO TINA</h1>
+  <h1 style="color: rgb(57, 1, 79);">LOGIN TO ACCOUNT</h1>
 <% if(messages.error){ %>
     <%    messages.error %>
+
 <% } %>
-<form style="font-size: 30px;">LOGIN TO ACCOUNT</form>
+
 <form action = "/login" method="POST" >
 
     <div>
@@ -173,4 +208,5 @@ input{
     </div>
 </form>
 </div>
+
 </body>
